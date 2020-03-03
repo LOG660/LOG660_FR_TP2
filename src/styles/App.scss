@@ -1,0 +1,57 @@
+@import './navigation.scss';
+
+.app {
+  font-size: 16px;  
+  .app-content {
+    margin: 50px 0;
+  }
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex {
+  flex: 1;
+}
+
+.flex-10 {
+  min-width: 10%;
+  max-width: 10%;
+}
+
+.flex-15 {
+  min-width: 15%;
+  max-width: 15%;
+}
+
+.flex-30 {
+  min-width: 30%;
+  max-width: 30%;
+}
+
+.flex-50 {
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.flex-60 {
+  min-width: 60%;
+  max-width: 60%;
+}
+
+.flex-80 {
+  min-width: 80%;
+  max-width: 80%;
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+}
