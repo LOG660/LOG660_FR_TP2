@@ -23,7 +23,7 @@ class NavigationMenu extends React.Component {
             <>
                 <div className="flex-row menu-container">
                     <div className="left flex-10">
-                        <p>Our appp</p>
+                        <p>TP2</p>
                     </div>
                     <div className="flex"></div>
                     <div className="right flex-10">
