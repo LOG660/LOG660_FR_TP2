@@ -1,0 +1,16 @@
+.main-container {
+    margin-top: 50px;
+    
+    .search {
+        align-items: center;
+        min-height: 60px;
+        max-height: 60px;
+        input {
+            width: 400px;
+        }
+        input,
+        button {
+            max-height: 30px;
+        }
+    }
+}

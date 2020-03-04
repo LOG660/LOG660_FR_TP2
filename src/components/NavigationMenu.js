@@ -37,11 +37,10 @@ class NavigationMenu extends React.Component {
                     centered
                 >
                     <Modal.Body>
-                        <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
-                            <Tab eventKey="login" title="Login">
-                                <LoginForm handleClose={handleClose.bind(this)} />
-                            </Tab>
-                        </Tabs>
+                        <Modal.Header>
+                            <h2>Login</h2>
+                        </Modal.Header>
+                        <LoginForm handleClose={handleClose.bind(this)} />
                     </Modal.Body>
                 </Modal>
             </>

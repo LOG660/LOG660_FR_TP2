@@ -1,4 +1,5 @@
 @import './navigation.scss';
+@import './mainpage.scss';
 
 .app {
   font-size: 16px;  
@@ -54,4 +55,50 @@ button {
   background: none;
   outline: none;
   border: none;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.justify-content-space-around {
+  justify-content: space-around;
+}
+.justify-content-start {
+  justify-content: start;
+}
+.justify-content-end {
+  justify-content: end;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-center-center {
+  justify-content: center;
+  align-content: center;
+}
+
+.align-content-space-between {
+  align-content: space-between;
+}
+.align-content-space-around {
+  align-content: space-around;
+}
+.align-content-start {
+  align-content: start;
+}
+.align-content-end {
+  align-content: end;
+}
+.align-content-center {
+  align-content: center;
+}
+.align-content-center-center {
+  justify-content: center;
+  align-content: center;
+}
+.cursor {
+  cursor: pointer;
+}
+.App-Content {
+  margin-top: 80px;
 }
