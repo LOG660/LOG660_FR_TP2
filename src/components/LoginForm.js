@@ -5,8 +5,8 @@ export default class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "tonyown10@gmail.com",
-            password: "123",
+            email: "RobertCFlores21@gmail.com",
+            password: "eishie3meiH",
             errorMessage: "Invalid username or password, please try again",
             showErrorMessage: false
         };
@@ -14,7 +14,29 @@ export default class LoginForm extends Component {
     render() {
         
         const login = (e) => {
-			
+			e.preventDefault()
+			const { email, password } = this.state;
+			// const user = {
+			// 	email: email,
+			// 	password: password
+            // }
+			fetch(`localhost:8080/LOG660-TP2/User?email=${email}&password=${password}`)
+				.then(response => {
+					switch(response.status) {
+						case 200: 
+							this.setState({
+								showErrorMessage: false
+                            });
+                            this.props.handleClose();
+							break;
+						case 404: 
+							this.setState({
+								showErrorMessage: true
+							})
+					}
+                })
+                
+                //localhost:8080/LOG660-TP2/User?email=RobertCFlores21@gmail.com&password=eishie3meiH
         }
         
 		const handleChange = (event) => {
@@ -30,11 +52,11 @@ export default class LoginForm extends Component {
                 <Form onSubmit={login.bind(this)}>
                     <Form.Group controlId="formGroupEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control defaultValue="user" name="username" type="text" placeholder="Enter username" onChange={(e) => handleChange(e)} />
+                        <Form.Control defaultValue="RobertCFlores21@gmail.com" name="email" type="email" placeholder="Enter email" onChange={(e) => handleChange(e)} />
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control defaultValue="123" name="password" type="password" placeholder="Password" onChange={(e) => handleChange(e)} />
+                        <Form.Control defaultValue="eishie3meiH" name="password" type="password" placeholder="Password" onChange={(e) => handleChange(e)} />
                     </Form.Group>
                     <Form.Group id="formGridCheckbox">
                         <Form.Check type="checkbox" variant="dark" label="Remember me" />
