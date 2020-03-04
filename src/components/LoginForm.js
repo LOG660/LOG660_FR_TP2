@@ -16,10 +16,6 @@ export default class LoginForm extends Component {
         const login = (e) => {
 			e.preventDefault()
 			const { email, password } = this.state;
-			// const user = {
-			// 	email: email,
-			// 	password: password
-            // }
 			fetch(`localhost:8080/LOG660-TP2/User?email=${email}&password=${password}`)
 				.then(response => {
 					switch(response.status) {

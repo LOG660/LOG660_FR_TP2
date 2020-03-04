@@ -18,14 +18,15 @@ export default class MainPage extends Component {
             });
         }
 
-        const handleSubmit = (event) => {
-            console.log("submit was called")
+        const handleRent = (event) => {
+            //logic pour louer
+            
         }
 
         return (
             <div className="main-container flex-row">
                 <p>{this.props.movie.name}</p>
-                <button className=""> 
+                <button className=""  onClick={() => handleRent()}> 
                     Louer
                 </button>
             </div>
