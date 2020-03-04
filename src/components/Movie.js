@@ -24,7 +24,7 @@ export default class MainPage extends Component {
         }
 
         return (
-            <div className="main-container flex-row">
+            <div className="movie-container flex-row">
                 <p>{this.props.movie.name}</p>
                 <button className=""  onClick={() => handleRent()}> 
                     Louer

@@ -16,19 +16,14 @@ export default class LoginForm extends Component {
         const login = (e) => {
 			e.preventDefault()
 			const { email, password } = this.state;
-			fetch(`localhost:8080/LOG660-TP2/User?email=${email}&password=${password}`)
+			fetch(`http://localhost:8080/LOG660-TP2/User?email=${email}&password=${password}`)
 				.then(response => {
-					switch(response.status) {
-						case 200: 
-							this.setState({
-								showErrorMessage: false
-                            });
+                    if(response.ok){
+                        this.setState({showErrorMessage: false});
+                        response.json().then(user => {
+                            this.props.setUser(user);
                             this.props.handleClose();
-							break;
-						case 404: 
-							this.setState({
-								showErrorMessage: true
-							})
+                        })
 					}
                 })
                 
