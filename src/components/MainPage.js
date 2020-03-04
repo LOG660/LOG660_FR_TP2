@@ -25,7 +25,7 @@ export default class MainPage extends Component {
         return (
             <div className="main-container flex-column">
                 <div className="flex-row justify-content-center search">
-                    <input type="text" placeholder="Search for movies" value={this.state.value} onChange={(e) => handleChange(e)}/>
+                    <input type="text" name="value" placeholder="Search for movies" onChange={(e) => handleChange(e)}/>
                     <button type="submit" onClick={() => handleSubmit()}>
                         Search
                 </button>
