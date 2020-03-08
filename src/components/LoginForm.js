@@ -12,25 +12,41 @@ export default class LoginForm extends Component {
         };
     }
     render() {
-        
-        const login = (e) => {
-			e.preventDefault()
-			const { email, password } = this.state;
-			fetch(`http://localhost:8080/LOG660-TP2/User?email=${email}&password=${password}`)
-				.then(response => {
-                    if(response.ok){
-                        this.setState({showErrorMessage: false});
+
+
+
+    const setUser = (userObj) => {
+        localStorage.setItem('user', JSON.parse(userObj))
+        this.setState({ user: userObj });
+      }
+
+        const handleLogin = (e) => {
+            e.preventDefault()
+            const { email, password } = this.state;
+            fetch(`http://localhost:8080/LOG660-TP2/User?email=${email}&password=${password}`)
+                .then(response => {
+                    if (response.status === 200) {
+                        console.log(response)
+                        this.setState({
+                            showErrorMessage: false
+                        });
+                        this.props.handleClose();
                         response.json().then(user => {
                             this.props.setUser(user);
                             this.props.handleClose();
+                            this.props.setLogged(true);
                         })
-					}
+                    } else {
+                        this.setState({
+                            showErrorMessage: true
+                        })
+                    }
                 })
-                
-                //localhost:8080/LOG660-TP2/User?email=RobertCFlores21@gmail.com&password=eishie3meiH
+
+            //localhost:8080/LOG660-TP2/User?email=RobertCFlores21@gmail.com&password=eishie3meiH   
         }
-        
-		const handleChange = (event) => {
+
+        const handleChange = (event) => {
             this.setState({
                 [event.target.name]: event.target.value,
             });
@@ -40,7 +56,7 @@ export default class LoginForm extends Component {
                 {this.state.showErrorMessage &&
                     <p>{this.state.errorMessage}</p>
                 }
-                <Form onSubmit={login.bind(this)}>
+                <Form>
                     <Form.Group controlId="formGroupEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control defaultValue="RobertCFlores21@gmail.com" name="email" type="email" placeholder="Enter email" onChange={(e) => handleChange(e)} />
@@ -52,9 +68,9 @@ export default class LoginForm extends Component {
                     <Form.Group id="formGridCheckbox">
                         <Form.Check type="checkbox" variant="dark" label="Remember me" />
                     </Form.Group>
-                    <button className="button-themed" type="submit">
+                    <button className="button-themed" type="submit" onClick={(e) => handleLogin(e)}>
                         Login
-                </button>
+                        </button>
                 </Form>
             </>
         )
