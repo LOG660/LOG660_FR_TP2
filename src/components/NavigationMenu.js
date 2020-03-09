@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
+import React  from 'react';
 import Modal from 'react-bootstrap/Modal'
 import LoginForm from './LoginForm.js';
 
@@ -9,23 +7,29 @@ class NavigationMenu extends React.Component {
         super(props);
         this.state = {
             show: false,
-            user: {
-                nom: '',
-                prenom:''
-            }
         }
     }
 
     render() {
         const handleClose = () => {
-			this.setState({ show: false });
-		};
-		const handleShow = () => {
-			this.setState({ show: true });
+            this.setState({ show: false });
         };
-        const setUser = (userObj) => {
-            this.setState({user: userObj});
-            console.log(this.state.user)
+        const handleShow = () => {
+            this.setState({ show: true });
+        };
+
+        const userExistInLocal = () => {
+            let user = JSON.parse(localStorage.getItem('user'));
+            if (user === null) 
+            return false;
+            else 
+            return true;
+        }        
+        const handleLogout = (event) => {
+            localStorage.setItem('user', null)
+            this.setState({
+                user: {}
+            });   
         }
         return (
             <>
@@ -35,8 +39,16 @@ class NavigationMenu extends React.Component {
                     </div>
                     <div className="flex"></div>
                     <div className="right flex-10">
-                        <p>{this.state.user.nom} {this.state.user.prenom}</p>
-                        <button className="action-btn" onClick={handleShow.bind(this)}>Connect</button>
+                        {userExistInLocal() ?
+                            <div className="flex-row">
+
+                                <p>{JSON.parse(localStorage.getItem('user')).prenom} {JSON.parse(localStorage.getItem('user')).nom} </p>
+                                <button className="action-btn" onClick={() => handleLogout()}>Logout</button>
+                            </div>
+                            :
+                            <button className="action-btn" onClick={() => handleShow()}>Connect</button>
+                        }
+
                     </div>
                 </div>
                 <Modal
@@ -49,7 +61,7 @@ class NavigationMenu extends React.Component {
                         <Modal.Header>
                             <h2>Login</h2>
                         </Modal.Header>
-                        <LoginForm setUser={setUser.bind(this)} handleClose={handleClose.bind(this)} />
+                        <LoginForm setUser={this.props.setUser.bind(this)} setLogged={this.props.setLogged.bind(this)} handleClose={handleClose.bind(this)} />
                     </Modal.Body>
                 </Modal>
             </>
