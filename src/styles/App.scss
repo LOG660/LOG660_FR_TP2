@@ -103,3 +103,15 @@ button {
 .App-Content {
   margin-top: 80px;
 }
+
+table {
+  border-spacing: 10px;
+  border-collapse: separate;
+
+  button {
+    max-height: 30px;
+    background: rgb(111, 134, 199);
+    color: white;
+    margin: 0 10px;
+  } 
+}

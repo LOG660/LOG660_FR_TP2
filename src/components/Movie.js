@@ -16,7 +16,6 @@ export default class MainPage extends Component {
         const handleRent = (e) => {
             e.preventDefault();
             let user = JSON.parse(localStorage.getItem('user'));
-            console.log(user)
             let movieid = this.props.movie.id
             let userid = user.id;
 
@@ -25,16 +24,22 @@ export default class MainPage extends Component {
             })
             .then(response => {
                 console.log(response)
+                if(response.ok) {
+                    this.props.confirmRentedMovie(this.props.movie);
+                }
             })
         }
 
         return (
-            <div className="movie-container flex-row">
-                <p>{this.props.movie.titre}({this.props.movie.annee})</p>
-                <button className=""  onClick={(e) => handleRent(e)}> 
-                    Louer
-                </button>
-            </div>
+            <tr>
+                <td>{this.props.movie.annee}</td>
+                <td>{this.props.movie.titre}</td>
+                <td>
+                    <button className=""  onClick={(e) => handleRent(e)}> 
+                        Louer
+                    </button>
+                </td>
+            </tr>
         )
     }
 
