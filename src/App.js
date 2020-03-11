@@ -7,8 +7,18 @@ import MainPage from './components/MainPage';
 export default class App extends Component {
   constructor(props) {
     super(props);
+    let user = localStorage.getItem('user');
+    let logged = () => {
+      
+      if(user === null || user == null || user == undefined) {
+        console.log("here")
+        return false;
+      } else {
+        return true;
+      }
+    }
     this.state = {
-      logged: false,
+      logged: logged(),
       user: {
         nom: '',
         prenom:'',
@@ -22,7 +32,6 @@ export default class App extends Component {
     const setUser = (userObj) => {
       localStorage.setItem('user', JSON.stringify(userObj))
       this.setState({ user: userObj });
-      console.log(this.state.user)
     }
 
     const setLogged = (value) => {
@@ -32,13 +41,11 @@ export default class App extends Component {
     return (
       <div className="app">
         <Navbar user={this.state.user} setLogged={setLogged.bind(this)} setUser={setUser.bind(this)}/>
-        <div className="app-content">
         {this.state.logged ?
           <MainPage />
           : 
           null
         }
-        </div>
       </div>
     );
   }

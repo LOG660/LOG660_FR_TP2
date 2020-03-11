@@ -15,10 +15,10 @@ export default class LoginForm extends Component {
 
 
 
-    const setUser = (userObj) => {
-        localStorage.setItem('user', JSON.parse(userObj))
-        this.setState({ user: userObj });
-      }
+        const setUser = (userObj) => {
+            localStorage.setItem('user', JSON.parse(userObj))
+            this.setState({ user: userObj });
+        }
 
         const handleLogin = (e) => {
             e.preventDefault()
@@ -32,6 +32,7 @@ export default class LoginForm extends Component {
                         });
                         this.props.handleClose();
                         response.json().then(user => {
+                            console.log(user)
                             this.props.setUser(user);
                             this.props.handleClose();
                             this.props.setLogged(true);
@@ -42,8 +43,6 @@ export default class LoginForm extends Component {
                         })
                     }
                 })
-
-            //localhost:8080/LOG660-TP2/User?email=RobertCFlores21@gmail.com&password=eishie3meiH   
         }
 
         const handleChange = (event) => {
@@ -70,7 +69,7 @@ export default class LoginForm extends Component {
                     </Form.Group>
                     <button className="button-themed" type="submit" onClick={(e) => handleLogin(e)}>
                         Login
-                        </button>
+                    </button>
                 </Form>
             </>
         )

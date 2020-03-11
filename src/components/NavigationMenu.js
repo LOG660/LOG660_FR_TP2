@@ -20,13 +20,13 @@ class NavigationMenu extends React.Component {
 
         const userExistInLocal = () => {
             let user = JSON.parse(localStorage.getItem('user'));
-            if (user === null) 
+            if (user) 
+                return true;
             return false;
-            else 
-            return true;
         }        
         const handleLogout = (event) => {
-            localStorage.setItem('user', null)
+            localStorage.removeItem('user')
+            this.props.setLogged(false);
             this.setState({
                 user: {}
             });   
