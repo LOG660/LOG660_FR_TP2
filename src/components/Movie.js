@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 
 export default class MainPage extends Component {
 
@@ -22,22 +23,22 @@ export default class MainPage extends Component {
             fetch(`http://localhost:8080/LOG660-TP2/Location?user=${userid}&film=${movieid}`, {
                 method: 'POST'
             })
-            .then(response => {
-                console.log(response)
-                if(response.ok) {
-                    this.props.confirmRentedMovie(this.props.movie);
-                }
-            })
+                .then(response => {
+                    console.log(response)
+                    if(response.ok) {
+                        this.props.confirmRentedMovie(this.props.movie);
+                    }
+                })
         }
 
         return (
             <tr>
                 <td>{this.props.movie.annee}</td>
-                <td>{this.props.movie.titre}</td>
+                <td><Link to={'/movieDetails/'  + this.props.movie.id}>{this.props.movie.titre}</Link></td>
                 <td>
-                    <button className=""  onClick={(e) => handleRent(e)}> 
-                        Louer
-                    </button>
+                    <button className=""  onClick={(e) => handleRent(e)}>
+                    Louer
+                </button>
                 </td>
             </tr>
         )

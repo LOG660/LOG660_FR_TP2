@@ -9,7 +9,7 @@ export default class MainPage extends Component {
         this.state = {
             titre: '',
             anneeMin: 0,
-            anneeMax: 0,
+            anneeMax: 3000,
             affiche: '',
             genre: '',
             duree: 0,
