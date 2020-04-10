@@ -44,7 +44,7 @@ export default class ActeurDetails extends Component {
                 <h1>{this.state.nom}</h1>
                 <p><a href={this.state.photo}
                 >photo</a></p>
-                <p><b>date de naissance</b>: {this.state.dateNaissance} minutes</p>
+                <p><b>date de naissance</b>: {this.state.dateNaissance}</p>
                 <p><b>biographie</b>: {this.state.biographie}</p>
                 <p><b>Lieu de naissance</b>: {this.state.lieu}</p>
             </div>
