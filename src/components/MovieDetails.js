@@ -7,6 +7,7 @@ export default class MovieDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: JSON.parse(localStorage.getItem('user')),
             titre: '',
             annee:'',
             langue:'',
@@ -16,6 +17,8 @@ export default class MovieDetails extends Component {
             realisateur:'',
             acteurs: [],
             resume:'',
+            cote: 0,
+            recommendations: []
         }
     }
     componentDidMount() {
@@ -35,6 +38,20 @@ export default class MovieDetails extends Component {
                 this.setState({acteurs: response.acteurs})
                 this.setState({resume: response.resume})
             })
+
+        fetch(`http://localhost:8080/LOG660-TP2/correlation?idClient=${this.state.user.id}&idFilm=${this.props.idMovie}`, {
+            method: 'GET'
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            this.setState({
+                recommendations: data
+            })
+            console.log(data)
+        })
+        .catch(error => console.log(error))
     }
 
     render() {
@@ -63,6 +80,9 @@ export default class MovieDetails extends Component {
                 <p>Pays:  {this.state.pays.map((p, i ) =>
                     p + ", " )}</p>
 
+                <p>Cote du film : </p>
+
+                <p>Reommendations : {this.state.recommendations.map(r => r)} </p>
             </div>
 
         )
